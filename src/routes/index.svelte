@@ -2,32 +2,14 @@
 	import { onMount } from 'svelte';
 	import { useWallet, initWallet } from '$lib/wallet/useWallet';
 	import type { WalletName } from '@solana/wallet-adapter-wallets';
-	import { Buffer } from 'buffer';
+	import { getWallets } from '$lib/wallet';
 
 	let wallets = [];
 
 	const localStorageKey = 'walletAdapter';
 
 	onMount(async () => {
-		// setup some globals
-		global.Buffer = Buffer;
-
-		import('process').then((process) => {
-			global.process = process;
-		});
-
-		const Wallets = await import('@solana/wallet-adapter-wallets');
-
-		wallets = [
-			Wallets.getPhantomWallet(),
-			Wallets.getLedgerWallet(),
-			Wallets.getMathWallet(),
-			Wallets.getSolflareWallet(),
-			Wallets.getSolletWallet(),
-			Wallets.getSolongWallet(),
-			Wallets.getSafePalWallet(),
-			Wallets.getCoin98Wallet()
-		];
+		wallets = await getWallets();
 
 		await initWallet({
 			wallets,
@@ -64,7 +46,6 @@
 
 <svelte:head>
 	<script>
-		window.global = window;
 		global = globalThis; // for solana web3 repo
 	</script>
 </svelte:head>
@@ -83,6 +64,6 @@
 		width: 200px;
 	}
 	button:hover {
-		background-color: rgb(157, 86, 223);
+		background-color: rgb(190, 132, 245);
 	}
 </style>
