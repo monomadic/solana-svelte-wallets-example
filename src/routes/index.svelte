@@ -4,6 +4,8 @@
 	import type { WalletName } from '@solana/wallet-adapter-wallets';
 	import { Buffer } from 'buffer';
 
+	let wallets = [];
+
 	const localStorageKey = 'walletAdapter';
 
 	onMount(async () => {
@@ -14,10 +16,21 @@
 			global.process = process;
 		});
 
-		const wallets = await import('@solana/wallet-adapter-wallets');
+		const Wallets = await import('@solana/wallet-adapter-wallets');
+
+		wallets = [
+			Wallets.getPhantomWallet(),
+			Wallets.getLedgerWallet(),
+			Wallets.getMathWallet(),
+			Wallets.getSolflareWallet(),
+			Wallets.getSolletWallet(),
+			Wallets.getSolongWallet(),
+			Wallets.getSafePalWallet(),
+			Wallets.getCoin98Wallet()
+		];
 
 		await initWallet({
-			wallets: [wallets.getPhantomWallet(), wallets.getLedgerWallet()],
+			wallets,
 			autoConnect: true,
 			localStorageKey
 		});
@@ -35,10 +48,17 @@
 
 <div class="wrapper-content">
 	{#if $useWallet?.connected}
-		<button on:click={() => $useWallet.disconnect()}>disconnect wallet</button>
+		<button on:click={() => $useWallet.disconnect()}>
+			{$useWallet.wallet.name}
+			<img src={$useWallet.wallet.icon} alt={$useWallet.wallet.name} style="height: 20px" />
+		</button>
 	{:else}
-		<button on:click={() => selectWallet('Phantom')}>Phantom</button>
-		<button on:click={() => selectWallet('Ledger')}>Ledger</button>
+		{#each wallets as wallet}
+			<button on:click={() => selectWallet(wallet.name)}>
+				<img src={wallet.icon} alt={wallet.name} style="height: 20px" />
+				{wallet.name}
+			</button>
+		{/each}
 	{/if}
 </div>
 
@@ -48,3 +68,21 @@
 		global = globalThis; // for solana web3 repo
 	</script>
 </svelte:head>
+
+<style>
+	button {
+		color: white;
+		font-weight: bold;
+		background-color: rgb(132, 0, 255);
+		border-radius: 5px;
+		border: 0;
+		padding: 10px 30px;
+		margin: 5px;
+		display: block;
+		cursor: pointer;
+		width: 200px;
+	}
+	button:hover {
+		background-color: rgb(157, 86, 223);
+	}
+</style>
