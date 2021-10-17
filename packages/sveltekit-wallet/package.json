@@ -1,9 +1,8 @@
 {
-    "name": "sveltekit-wallet",
+    "name": "@monomadic/sveltekit-wallet",
     "version": "0.1.0",
     "description": "sveltekit solana wallet adaptor",
     "author": "Monomadic <deathdisco@protonmail.com>",
-    "homepage": "https://github.com/monomadic/solana-svelte-wallets-example#readme",
     "license": "ISC",
     "main": "lib/index.ts",
     "directories": {
@@ -13,15 +12,8 @@
     "files": [
         "lib"
     ],
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/monomadic/solana-svelte-wallets-example.git"
-    },
     "scripts": {
         "test": "echo \"Error: run tests from root\" && exit 1"
-    },
-    "bugs": {
-        "url": "https://github.com/monomadic/solana-svelte-wallets-example/issues"
     },
     "peerDependencies": {
         "@solana/wallet-adapter-base": "^0.6.0",

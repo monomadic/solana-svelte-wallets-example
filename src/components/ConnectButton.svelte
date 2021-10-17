@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { useWallet, initWallet } from 'sveltekit-wallet';
+	import { useWallet, initWallet } from '@monomadic/sveltekit-wallet';
 	import type { WalletName, Wallet } from '@solana/wallet-adapter-wallets';
 
 	export let wallets = [];
