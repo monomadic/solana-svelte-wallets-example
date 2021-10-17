@@ -1,6 +1,6 @@
 import { Buffer } from 'buffer';
 
-import type { Wallet } from '@solana/wallet-adapter-wallets';
+import type { Wallet } from '@solana/wallet-adapter-wallets/lib/types';
 export async function getWallets(): Promise<Wallet[]> {
 	global.Buffer = Buffer;
 

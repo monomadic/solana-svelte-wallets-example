@@ -1,6 +1,8 @@
 {
     "name": "solana-wallet-selector",
     "version": "0.0.1",
+    "private": true,
+    "useWorkspaces": true,
     "scripts": {
         "dev": "svelte-kit dev",
         "build": "svelte-kit build",
@@ -14,20 +16,21 @@
         "@solana/wallet-adapter-base": "^0.6.0",
         "@solana/wallet-adapter-wallets": "^0.10.1",
         "@sveltejs/kit": "next",
-        "@typescript-eslint/eslint-plugin": "^4.31.1",
-        "@typescript-eslint/parser": "^4.31.1",
-        "eslint": "^7.32.0",
+        "@typescript-eslint/eslint-plugin": "^5.0.0",
+        "@typescript-eslint/parser": "^5.0.0",
+        "buffer": "^6.0.3",
+        "eslint": "^8.0.1",
         "eslint-config-prettier": "^8.3.0",
         "eslint-plugin-svelte3": "^3.2.1",
+        "lerna": "^4.0.0",
         "prettier": "^2.4.1",
         "prettier-plugin-svelte": "^2.4.0",
-        "svelte": "^3.42.6",
-        "svelte-check": "^2.2.6",
-        "svelte-preprocess": "^4.9.4",
+        "process": "^0.11.10",
+        "svelte": "^3.43.2",
+        "svelte-check": "^2.2.7",
+        "svelte-preprocess": "^4.9.8",
         "tslib": "^2.3.1",
-        "typescript": "^4.4.3",
-        "buffer": "^6.0.3",
-        "process": "^0.11.10"
+        "typescript": "^4.4.4"
     },
     "type": "module"
 }

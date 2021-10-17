@@ -138,6 +138,7 @@ const sendTransaction = async (
 	return await adapter.sendTransaction(transaction, connection, options);
 };
 
+//export const useWallet
 export const useWallet = writable<useWalletStoreT>({
 	//Props
 	wallets: [],
@@ -328,7 +329,10 @@ useWalletAdapter.subscribe(({ adapter }: { adapter: Adapter | null }) => {
 
 	// Sign a transaction if the wallet supports it.
 	if (!(adapter && 'signTransaction' in adapter)) {
-		return;
+		useWallet.update((storeValues: useWalletStoreT) => ({
+			...storeValues,
+			signTransaction: undefined
+		}));
 	} else {
 		useWallet.update((storeValues: useWalletStoreT) => ({
 			...storeValues,
@@ -341,7 +345,10 @@ useWalletAdapter.subscribe(({ adapter }: { adapter: Adapter | null }) => {
 
 	// Sign multiple transactions if the wallet supports it
 	if (!(adapter && 'signAllTransactions' in adapter)) {
-		return;
+		useWallet.update((storeValues: useWalletStoreT) => ({
+			...storeValues,
+			signAllTransactions: undefined
+		}));
 	} else {
 		useWallet.update((storeValues: useWalletStoreT) => ({
 			...storeValues,
@@ -354,7 +361,10 @@ useWalletAdapter.subscribe(({ adapter }: { adapter: Adapter | null }) => {
 
 	// Sign an arbitrary message if the wallet supports it.
 	if (!(adapter && 'signMessage' in adapter)) {
-		return;
+		useWallet.update((storeValues: useWalletStoreT) => ({
+			...storeValues,
+			signMessage: undefined
+		}));
 	} else {
 		useWallet.update((storeValues: useWalletStoreT) => ({
 			...storeValues,
